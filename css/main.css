@@ -181,7 +181,7 @@ form {
 	border: 2px solid transparent;
 }
 .nav ul li:nth-child(5n+2) a {
-	background: #ffe7cf;
+	background: #ffe7cf; 
 }
 .nav ul li:nth-child(5n+3) a {
 	background: #f3e7ff;
