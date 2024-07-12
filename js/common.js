@@ -18,26 +18,83 @@ $(document).ready(function() {
 
 
 	$('.btn-copy').html("Скопировать");
-	$(this).html("Скопировано");
+	$(this).html("Скопировано!");
+	$(this).addClass("active");
 	setTimeout(() => {
 		$(this).html("Скопировать");
+		$(this).removeClass("active");
 	}, 2000);
 });
 
-$(".nav__more a").click(function(e) {
+{
+	if ($(window).width() > 992) { 
+		$(".nav__more a").click(function(e) {
+			e.preventDefault();
+			if ($(".nav ul li:nth-child(n+15)").is(":hidden")) {
+				$(".nav ul li:nth-child(n+15)").slideDown(200);
+				$(this).find("span").html("Свернуть");
+				$(this).addClass("active");
+			} else {
+				$(".nav ul li:nth-child(n+15)").slideUp(200);
+				$(this).find("span").html("Еще");
+				$(this).removeClass("active");
+			}
+		});
+		
+	}
+}
+{
+	if ($(window).width() < 992) { 
+		$(".nav__more a").click(function(e) {
+			e.preventDefault();
+			if ($(".nav ul li:nth-child(n+8)").is(":hidden")) {
+				$(".nav ul li:nth-child(n+8)").slideDown(200);
+				$(this).find("span").html("Свернуть");
+				$(this).addClass("active");
+			} else {
+				$(".nav ul li:nth-child(n+8)").slideUp(200);
+				$(this).find("span").html("Еще");
+				$(this).removeClass("active");
+			}
+		});
+		
+	}
+}
+
+$(".share-item .btn-link").click(function(e) {
 	e.preventDefault();
-	if ($(".nav ul li:nth-child(n+15)").is(":hidden")) {
-		$(".nav ul li:nth-child(n+15)").slideDown(200);
-		$(this).find("span").html("Свернуть");
-		$(this).addClass("active");
+	if ($(this).siblings(".share-popup").is(":hidden")) {
+		$(this).siblings(".share-popup").fadeIn(200);
 	} else {
-		$(".nav ul li:nth-child(n+15)").slideUp(200);
-		$(this).find("span").html("Еще");
-		$(this).removeClass("active");
+		
 	}
 });
 
+$(document).mouseup(function (e) {
+	var container = $(".share-popup");
+	if (container.has(e.target).length === 0){
+		$(".share-popup").fadeOut(200);
+	}
+  });
 
+
+  $(".btn-search").click(function() {
+	$(this).addClass("active");
+	
+	setTimeout(function () {
+		$(".btn-search").find("input").focus();
+	  }, 300); 
+});
+
+
+$(document).mouseup(function (e) {
+	var container = $(".btn-search");
+	if (container.has(e.target).length === 0){
+		$(".btn-search").removeClass("active");
+		$(".content-search").fadeOut(200)
+		$(".header").removeClass("header_search");
+	}
+  });
 
 	//Попап менеджер FancyBox
 	//Документация: http://fancybox.net/howto
