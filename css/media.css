@@ -380,7 +380,7 @@
 }
 @media only screen and (max-width : 576px) {
     .btn-search.active .form-search {
-        width: calc(100vw - 30px);
+        width: calc(100vw - 30px); 
     }
 }
 
